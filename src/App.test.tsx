@@ -1,9 +1,14 @@
 import {render, screen} from '@testing-library/react';
 import App from './App';
 
-it("Should have hello world", () => {
+it("should display: Choose your lucky numbers.", () => {
     render(<App />)
-    const message = screen.queryByText(/Hello World/i)
+    const message = screen.queryByText(/Choose your lucky numbers./i)
     expect(message).toBeVisible();
+})
 
+it("should render Footer.tsx", () => {
+    render(<App />)
+    const footerComponent = screen.getByRole('footer')
+    expect(footerComponent).toBeInTheDocument();
 })
