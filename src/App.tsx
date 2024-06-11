@@ -1,13 +1,13 @@
-import { useState } from 'react'
 import './App.css'
+import Footer from './components/Footer'
 
 const App = () => {
 
   return (
     <>
       <div>
-        <h1>Hello World</h1>
-        <h2>GoodBye</h2>
+        <h1>Choose your lucky numbers.</h1>
+        <Footer />
       </div>
     </>
   )
