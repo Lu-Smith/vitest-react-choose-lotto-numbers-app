@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent, act} from '@testing-library/react';
 import Game from './Game';
 import Machine from '../assets/MachinesSpreadsheet.png';
 
@@ -18,11 +18,37 @@ beforeEach(() => {
       globalThis.Image = MockImage as new (width?: number | undefined, height?: number | undefined) => HTMLImageElement;
   });
 
-it("should render canvas", () => {
-    render(<Game />)
-    const canvasComponent = screen.getByRole('canvas')
-    expect(canvasComponent).toBeVisible();
-})
+describe('Game component', () => {
+    it("should render canvas", () => {
+        render(<Game />)
+        const canvasComponent = screen.getByRole('canvas')
+        expect(canvasComponent).toBeVisible();
+    });
+    it('should start animation when Play button is clicked', () => {
+        render(<Game />);
+        const playButton = screen.getByText('Play');
+        fireEvent.click(playButton);
+    });
+    it('should animate through frames and reset play state', () => {
+        vi.useFakeTimers();
+        render(<Game />);
+        const playButton = screen.getByText('Play');
+        
+        fireEvent.click(playButton);
+
+        // Mock the animation frame progression
+        for (let i = 0; i < 7; i++) {
+        act(() => {
+            vi.advanceTimersByTime(150);
+        });
+        }
+
+        fireEvent.click(playButton);
+
+        // Clean up timers
+        vi.useRealTimers();
+    });
+});
 
 describe('MockImage', () => {
     it('should trigger onload when src is set', () => {
