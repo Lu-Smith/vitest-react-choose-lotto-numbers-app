@@ -8,3 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+canvas {
+  background-color: black;
+}
+
