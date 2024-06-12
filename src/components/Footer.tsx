@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer role="footer">
       <h3>Coded by 
