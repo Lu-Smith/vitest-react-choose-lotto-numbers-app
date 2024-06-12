@@ -12,3 +12,9 @@ it("should render Footer.tsx", () => {
     const footerComponent = screen.getByRole('footer')
     expect(footerComponent).toBeInTheDocument();
 })
+
+it("should render canvas", () => {
+    render(<App />)
+    const canvasComponent = screen.getByRole('canvas')
+    expect(canvasComponent).toBeInTheDocument();
+})
