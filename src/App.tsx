@@ -12,19 +12,25 @@ const App = () => {
   return (
     <>
       <div className='App'>
-        {reset ?
-          <div className='question'>
-            <h2>Are these <span>numbers</span> calling <span>your</span> name?</h2>
-          </div>
-        :
-          <h1>
-            Choose your{' '} 
-            <span>lucky</span>
-            {' '} numbers.
-          </h1>
-        }
-        <Game handleReset={handleReset} />
-        <Footer />
+        <div className='header'>
+          {reset ?
+            <div className='question'>
+              <h2>Are these <span>numbers</span> calling <span>your</span> name?</h2>
+            </div>
+          :
+            <h1>
+              Choose your{' '} 
+              <span>lucky</span>
+              {' '} numbers.
+            </h1>
+          }
+        </div>
+        <div className='game'>
+          <Game handleReset={handleReset} />
+        </div>
+        <div className='footer'>
+          <Footer />
+        </div>
       </div>
     </>
   )
