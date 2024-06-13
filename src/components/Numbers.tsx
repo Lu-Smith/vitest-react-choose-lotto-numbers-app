@@ -1,14 +1,27 @@
-import React from 'react'
+import React from 'react';
 
-const Numbers: React.FC = () => {
+interface NumberProps {
+  randomNumbers: number[];
+ }
+const Numbers: React.FC<NumberProps> = ({randomNumbers}) => {
   return (
     <div data-testid='numbers' className='numbers'>
-      <h2>1</h2>
-      <h2><span>12</span></h2>
-      <h2>23</h2>
-      <h2><span>34</span></h2>
-      <h2>42</h2>
-      <h2><span>50</span></h2>
+      {randomNumbers.length > 0 ?
+      <>
+        <h1 className='bonusBall'>{randomNumbers[0]}</h1>
+        <div className='number'>
+          <h2>{randomNumbers[1]}</h2>
+          <h2><span>{randomNumbers[2]}</span></h2>
+          <h2>{randomNumbers[3]}</h2>
+          <h2><span>{randomNumbers[4]}</span></h2>
+          <h2>{randomNumbers[5]}</h2>
+          <h2><span>{randomNumbers[6]}</span></h2>
+        </div>
+      </>
+      :
+      <h1> </h1>
+      }
+      
     </div>
   )
 }
