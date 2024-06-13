@@ -9,9 +9,22 @@ interface ResetProps {
 const Game: React.FC<ResetProps> = ({handleReset}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [play, setPlay] = useState(false);
+  const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
+
+  const getRandomNumber = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
+
+    const generateRandomNumbers = () => {
+      const numbers: number[] = [];
+      for (let i = 0; i < 7; i++) {
+        numbers.push(getRandomNumber(1, 59));
+      }
+      setRandomNumbers(numbers);
+    };
 
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -49,6 +62,8 @@ const Game: React.FC<ResetProps> = ({handleReset}) => {
           setPlay(false);
           handleReset();
           cancelAnimationFrame(animationFrame!);
+          generateRandomNumbers();
+
         } else {
           setTimeout(() => {
             animationFrame = requestAnimationFrame(animate);
@@ -65,7 +80,7 @@ const Game: React.FC<ResetProps> = ({handleReset}) => {
       };
     }
     
-  }, [play]);
+  }, [play, handleReset]);
 
   return (
     <div className='machineContainer'>
@@ -73,7 +88,7 @@ const Game: React.FC<ResetProps> = ({handleReset}) => {
       {play ? '' : 
       <div>
         <button onClick={() => setPlay(true)}>Play</button>
-        <Numbers />
+        <Numbers randomNumbers={randomNumbers} />
       </div>
       }
     </div>
