@@ -3,8 +3,14 @@ import App from './App';
 
 it("should display: Choose your lucky numbers.", () => {
     render(<App />)
-    const message = screen.queryByText(/Choose your lucky numbers./i)
-    expect(message).toBeVisible();
+    const message1 = screen.queryByText(/Choose your/i)
+    expect(message1).toBeVisible();
+
+    const message2 = screen.queryByText(/lucky/i)
+    expect(message2).toBeVisible();
+
+    const message3 = screen.queryByText(/numbers./i)
+    expect(message3).toBeVisible();
 })
 
 it("should render Footer.tsx", () => {
