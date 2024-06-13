@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Machine from '../assets/MachinesSpreadsheet.png';
+import Numbers from './Numbers';
 
 const Game: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -26,7 +27,7 @@ const Game: React.FC = () => {
       ctx?.drawImage(img, frameX * spriteWidth, 0, spriteWidth, spriteHeight, 0, 0, canvas.width, canvas.height);
 
       const drawFrame = () => {
-        if (ctx && img.complete) {
+        if (ctx) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, frameX * spriteWidth, 0, spriteWidth, spriteHeight, 0, 0, canvas.width, canvas.height);
         }
@@ -60,6 +61,7 @@ const Game: React.FC = () => {
     <>
       <canvas role='canvas' ref={canvasRef}></canvas>
       <button onClick={() => setPlay(true)}>Play</button>
+      <Numbers />
     </>
     
   )
