@@ -20,8 +20,12 @@ const Game: React.FC<ResetProps> = ({handleReset}) => {
 
     const generateRandomNumbers = () => {
       const numbers: number[] = [];
-      for (let i = 0; i < 7; i++) {
-        numbers.push(getRandomNumber(1, 59));
+
+      while (numbers.length < 7) {
+        const newNumber = getRandomNumber(1, 59);
+        if (!numbers.includes(newNumber)) {
+          numbers.push(newNumber);
+        }
       }
       setRandomNumbers(numbers);
     };
