@@ -24,7 +24,10 @@ const App = () => {
               <h2>Are these <span>numbers</span> calling <span>your</span> name?</h2>
             </motion.div>
           :
-            <h1>
+            <motion.h1
+            initial={{opacity: 0}} 
+            animate={{opacity: 1}}
+            transition={{duration: 1.5}}>
               Choose your{' '} 
               <motion.div
                 className='lucky'
@@ -36,7 +39,7 @@ const App = () => {
                 lucky
               </motion.div>
               {' '} numbers.
-            </h1>
+            </motion.h1>
           }
         </div>
         <div className='game'>
