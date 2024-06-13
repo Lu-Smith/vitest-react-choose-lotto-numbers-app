@@ -24,7 +24,7 @@ const Game: React.FC = () => {
       let frameX = 0;
       const frameRate = 150;
 
-      ctx?.drawImage(img, frameX * spriteWidth, 0, spriteWidth, spriteHeight, 0, 0, canvas.width, canvas.height);
+      if(!play) ctx?.drawImage(img, frameX * spriteWidth, 0, spriteWidth, spriteHeight, 0, 0, canvas.width, canvas.height);
 
       const drawFrame = () => {
         if (ctx) {
@@ -32,6 +32,11 @@ const Game: React.FC = () => {
           ctx.drawImage(img, frameX * spriteWidth, 0, spriteWidth, spriteHeight, 0, 0, canvas.width, canvas.height);
         }
       };
+
+      img.onload = () => {
+        drawFrame(); 
+      };
+
       const animate = () => {
         drawFrame();
         frameX++;
@@ -58,11 +63,16 @@ const Game: React.FC = () => {
   }, [play]);
 
   return (
-    <>
+    <div className='machineContainer'>
       <canvas role='canvas' ref={canvasRef}></canvas>
-      <button onClick={() => setPlay(true)}>Play</button>
-      <Numbers />
-    </>
+      
+      {play ? '' : 
+      <div>
+        <button onClick={() => setPlay(true)}>Play</button>
+        <Numbers />
+      </div>
+      }
+    </div>
     
   )
 }
