@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import Machine from '../assets/MachinesSpreadsheet.png';
 import Numbers from './Numbers';
 
-const Game: React.FC = () => {
+interface ResetProps {
+  handleReset: () => void;
+}
+
+const Game: React.FC<ResetProps> = ({handleReset}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [play, setPlay] = useState(false);
 
@@ -43,6 +47,7 @@ const Game: React.FC = () => {
         if (frameX > 6) {
           frameX = 0;
           setPlay(false);
+          handleReset();
           cancelAnimationFrame(animationFrame!);
         } else {
           setTimeout(() => {
@@ -65,7 +70,6 @@ const Game: React.FC = () => {
   return (
     <div className='machineContainer'>
       <canvas role='canvas' ref={canvasRef}></canvas>
-      
       {play ? '' : 
       <div>
         <button onClick={() => setPlay(true)}>Play</button>
