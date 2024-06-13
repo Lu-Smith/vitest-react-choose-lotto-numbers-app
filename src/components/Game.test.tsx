@@ -24,6 +24,16 @@ describe('Game component', () => {
         const canvasComponent = screen.getByRole('canvas')
         expect(canvasComponent).toBeVisible();
     });
+    it("should render Numbers component", () => {
+        render(<Game />)
+        const numbersComponent = screen.getByTestId('numbers')
+        expect(numbersComponent).toBeVisible();
+    });
+    it("should render play button", () => {
+        render(<Game />)
+        const playeButton = screen.getByText('Play')
+        expect(playeButton).toBeVisible;
+    });
     it('should start animation when Play button is clicked', () => {
         render(<Game />);
         const playButton = screen.getByText('Play');
