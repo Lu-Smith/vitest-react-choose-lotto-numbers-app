@@ -6,7 +6,7 @@ beforeEach(() => {
     // Mock the Image constructor
     class MockImage {
         onload: (() => void) | null = null;
-        set src(value: string) {
+        set src(_value: string) {
           setTimeout(() => {
             if (this.onload) {
               this.onload();    
