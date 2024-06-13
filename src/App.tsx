@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Footer from './components/Footer'
 import Game from './components/Game'
+import { motion } from "framer-motion"
 
 const App = () => {
   const [reset, setReset] = useState(false);
@@ -14,13 +15,26 @@ const App = () => {
       <div className='App'>
         <div className='header'>
           {reset ?
-            <div className='question'>
+            <motion.div 
+            className='question'
+            initial={{y: -100}} 
+            animate={{y: 0 }}
+            transition={{duration: 1}}
+            >
               <h2>Are these <span>numbers</span> calling <span>your</span> name?</h2>
-            </div>
+            </motion.div>
           :
             <h1>
               Choose your{' '} 
-              <span>lucky</span>
+              <motion.div
+                className='lucky'
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 1.1 }}
+                drag="x"
+                dragConstraints={{ left: -100, right: 100 }}
+              >
+                lucky
+              </motion.div>
               {' '} numbers.
             </h1>
           }
@@ -28,9 +42,14 @@ const App = () => {
         <div className='game'>
           <Game handleReset={handleReset} />
         </div>
-        <div className='footer'>
+        <motion.div 
+          className='footer'
+          initial={{y: 100}} 
+          animate={{y: 0 }}
+          transition={{duration: 1}}
+        >
           <Footer />
-        </div>
+        </motion.div>
       </div>
     </>
   )
