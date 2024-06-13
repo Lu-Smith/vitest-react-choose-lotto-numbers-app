@@ -9,7 +9,7 @@ beforeEach(() => {
         set src(value: string) {
           setTimeout(() => {
             if (this.onload) {
-              this.onload();
+              this.onload();    
             }
           }, 0);
         }
@@ -20,28 +20,38 @@ beforeEach(() => {
 
 describe('Game component', () => {
     it("should render canvas", () => {
-        render(<Game />)
+        const handleResetMock = vi.fn();
+        render(<Game handleReset={handleResetMock} />);
+
         const canvasComponent = screen.getByRole('canvas')
         expect(canvasComponent).toBeVisible();
     });
     it("should render Numbers component", () => {
-        render(<Game />)
+        const handleResetMock = vi.fn();
+        render(<Game handleReset={handleResetMock} />);
+
         const numbersComponent = screen.getByTestId('numbers')
         expect(numbersComponent).toBeVisible();
     });
     it("should render play button", () => {
-        render(<Game />)
+        const handleResetMock = vi.fn();
+        render(<Game handleReset={handleResetMock} />);
+
         const playeButton = screen.getByText('Play')
         expect(playeButton).toBeVisible;
     });
     it('should start animation when Play button is clicked', () => {
-        render(<Game />);
+        const handleResetMock = vi.fn();
+        render(<Game handleReset={handleResetMock} />);
+
         const playButton = screen.getByText('Play');
         fireEvent.click(playButton);
     });
     it('should animate through frames and reset play state', () => {
         vi.useFakeTimers();
-        render(<Game />);
+        const handleResetMock = vi.fn();
+        render(<Game handleReset={handleResetMock} />);
+        
         const playButton = screen.getByText('Play');
         
         fireEvent.click(playButton);
